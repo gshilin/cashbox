@@ -1,0 +1,22 @@
+h1 Incomes
+- Cashdesk.includes(:shifts).all.each do |desk|
+  strong Cashdesk #{desk.system_name} ##{desk.number}
+  br
+  br
+  - desk.shifts.order(id: :asc).each do |shift|
+    a style="margin-right: 10px;" href="#x-#{desk.id}-#{shift.id}" Shift ##{shift.id} (#{shift.state})
+
+br
+br
+- Cashdesk.includes(:shifts).all.each do |desk|
+  - desk.shifts.order(id: :asc).each do |shift|
+    div id="x-#{desk.id}-#{shift.id}" style="border: 1px solid black;"
+      strong Desk: #{desk.id} Shift: #{shift.id}
+      br
+      | CC amount: #{shift.cc_amount}
+      br
+      | ILS amount: #{shift.cash_amount('ILS')}
+      br
+      | USD amount: #{shift.cash_amount('USD')}
+      br
+      | EUR amount: #{shift.cash_amount('EUR')}

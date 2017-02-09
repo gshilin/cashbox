@@ -1,0 +1,9 @@
+$('#new_income').trigger('reset');
+$('#status').addClass('status-positive').html('<div class="container">הוקלט</div>');
+$('#amounts').html('<%= render 'layouts/amounts', xray: false -%>');
+$('#transactions').html('<%= render 'shifts/transactions', xray: false -%>');
+$('#validation-errors').html('');
+$('input[name^="income["]').removeClass('field-with-errors');
+setTimeout(function () {
+  $('#status').removeClass('status-positive');
+}, 10000);

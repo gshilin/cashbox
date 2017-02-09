@@ -1,0 +1,9 @@
+<%- messages = @income.errors.full_messages.inject('') do |memo, msg|
+      memo += "<div class=\"error\">#{msg}</div>"
+      memo
+    end -%>
+$('#validation-errors').html('<div class="errorRow"><div class="container"><%= messages.html_safe -%></div></div>');
+$('input[name^="income["]').removeClass('field-with-errors');
+<%- @income.errors.messages.keys.each do |key| -%>
+$('#income_<%=key-%>').addClass('field-with-errors');
+<%- end -%>
