@@ -1,0 +1,14 @@
+= simple_form_for @desk, url: (@desk.new_record? ? admin_cashdesks_path : admin_cashdesk_path(@desk)), action: :patch, as: :cash_desk do |f|
+  - if f.error_notification
+    = f.error_notification
+    hr
+  button type='submit' disable_with='Please wait...' #{f.object.new_record? ? 'Create' : 'Update'}
+  button onclick="location.href='#{admin_cashdesks_path}'" Cancel
+  hr
+  = f.input :number, label: 'Number', required: true
+  = f.input :system_name, label: 'System Name', required: true
+  = f.input :cc_label, label: 'ICount cc label', required: true
+  = f.input :nis_label, label: 'ICount nis label', required: true
+  = f.input :usd_label, label: 'ICount usd label', required: true
+  = f.input :eur_label, label: 'ICount eur label', required: true
+  = f.input :pelecard_ShopNo, label: 'pelecard ShopNo', required: true

@@ -1,0 +1,15 @@
+table
+  tr
+    th colspan="2" ס"כ
+  tr
+    td  כ"א
+    td #{'%.02f' % @shift.cc_amount}
+  tr
+    td ₪
+    td #{@shift.cash_amount('ILS')}
+  tr
+    td $
+    td #{@shift.cash_amount('USD')}
+  tr
+    td €
+    td #{@shift.cash_amount('EUR')}

@@ -1,0 +1,53 @@
+.credit-title
+  .container
+    .credit-title-1.clearfix
+      .logo
+      h1.title קופה #{@desk.system_name} ##{@desk.id} משמרת #{@shift.id}
+#validation-errors
+  - if @message
+    .errorRow
+      .container
+        = @message
+#status
+.main
+  .container
+    = simple_form_for [@desk, @shift], method: :delete do |f|
+
+    = simple_form_for @income, remote: true do |f|
+      = f.input :shift_id, as: :hidden
+      .main-content
+        .row
+          .col-sm-10
+            .form-group
+              label.control-label for="income_name"
+                i.ic-p.star-ic
+                span
+                  | &nbsp; שם ושם משפחה
+                em.ic-p.clear-ic style="display:none"
+              .control-value
+                input.required.form-control autocomplete="off" maxlength="40" tabindex="2" required="required" aria-required="true" size="40" type="text" value="" name="income[name]" id="income_name"
+          .col-sm-1#amounts
+            = render 'layouts/amounts'
+            - form = "edit_shift_#{@shift.id}"
+            input form=form type="submit" name="commit" value="סגור משמרת" class="btn" data-disable-with="סגור משמרת"
+        .row
+          .col-sm-10
+            .form-group
+              label.control-label for="income_amount"
+                i.ic-p.star-ic
+                span
+                  | &nbsp; סכום לתשלום
+                em.ic-p.clear-ic style="display:none"
+              .control-value
+                input.required.form-control autocomplete="off" maxlength="40" tabindex="2" required="required" aria-required="true" size="40" type="text" value="" name="income[amount]" id="income_amount"
+      .form-group.form-group-submit
+        .form-group-submit-in
+          = f.button :submit, '₪'
+          = f.button :submit, '$'
+          = f.button :submit, '€'
+          input.btn.btn-submit type="submit" name="commit" value="כרטיס אשראי" data-disable-with="כרטיס אשראי"
+.footer
+  .container
+    #transactions
+      = render 'shifts/transactions'
+    h2.footer-title © בני ברוך קבלה לעם

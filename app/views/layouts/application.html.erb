@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= if content_for(:title)
+               yield :title
+             else
+               'Congress Cashbox'
+             end
+  -%></title>
+  <%= csrf_meta_tags %>
+
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+</head>
+
+<body>
+<%= yield %>
+</body>
+</html>

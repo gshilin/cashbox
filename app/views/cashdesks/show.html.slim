@@ -1,0 +1,16 @@
+.credit-title
+  .container
+    .credit-title-1.clearfix
+      .logo
+      h1.title קופה #{@desk.system_name} ##{@desk.id}
+
+- if @shift.state == 'active'
+  = link_to 'Continue', cashdesk_shift_path(@desk, @shift)
+  br
+  br
+  = form_for [@desk, @shift], method: :delete do |f|
+    button type='submit' data-disable-with='Please wait...' Close shift
+- elsif @shift.state == 'inactive'
+  = link_to 'Activate', new_cashdesk_shift_path(@desk)
+
+= render 'layouts/amounts'
