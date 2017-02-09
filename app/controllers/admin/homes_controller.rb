@@ -1,6 +1,8 @@
-class Admin::HomesController < ApplicationController
+module Admin
+  class HomesController < ApplicationController
 
-  def index
-    @totals = Shift.totals
+    def index
+      @totals = Shift.totals
+    end
   end
 end

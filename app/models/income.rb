@@ -12,7 +12,7 @@ class Income < ApplicationRecord
       ILS: '₪'
   }
 
-  scope :successful, -> { where(success: true) }
+  scope :successful, -> { where(success: true, cancelled: false) }
 
   def request_receipt
     url = Icount.new.generate_receipt(id, icount_label, icount_payment_args)

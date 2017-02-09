@@ -1,5 +1,9 @@
-h1 Incomes
-- Cashdesk.includes(:shifts).all.each do |desk|
+.credit-title
+  .container
+    .credit-title-1.clearfix
+      .logo
+      h1.title מצב חנויות
+- Cashdesk.all.each do |desk|
   strong Cashdesk #{desk.system_name} ##{desk.number}
   br
   br
@@ -8,15 +12,17 @@ h1 Incomes
 
 br
 br
-- Cashdesk.includes(:shifts).all.each do |desk|
+- Cashdesk.all.each do |desk|
   - desk.shifts.order(id: :asc).each do |shift|
+    - amounts = shift.amounts
     div id="x-#{desk.id}-#{shift.id}" style="border: 1px solid black;"
+      a href=
       strong Desk: #{desk.id} Shift: #{shift.id}
       br
-      | CC amount: #{shift.cc_amount}
+      | CC amount: #{amounts[:cc]}
       br
-      | ILS amount: #{shift.cash_amount('ILS')}
+      | ILS amount: #{amounts[:nis]}
       br
-      | USD amount: #{shift.cash_amount('USD')}
+      | USD amount: #{amounts[:usd]}
       br
-      | EUR amount: #{shift.cash_amount('EUR')}
+      | EUR amount: #{amounts[:eur]}

@@ -3,12 +3,21 @@
     .credit-title-1.clearfix
       .logo
       h1.title קופה #{@desk.system_name} ##{@desk.id} משמרת #{@shift.id}
-#validation-errors
-  - if @message
-    .errorRow
+  - if @err != 0 && @message
+    #validation-errors
+      .errorRow
+        .container
+          = @message
+  - elsif @err == 0 && @message
+    #status.status-positive
       .container
         = @message
-#status
+    javascript:
+      setTimeout(function () {
+        $('#status').removeClass('status-positive');
+      }, 10000);
+  - else
+    #status
 .main
   .container
     = simple_form_for [@desk, @shift], method: :delete do |f|
@@ -29,7 +38,8 @@
           .col-sm-1#amounts
             = render 'layouts/amounts'
             - form = "edit_shift_#{@shift.id}"
-            input form=form type="submit" name="commit" value="סגור משמרת" class="btn" data-disable-with="סגור משמרת"
+            input form=form type="submit" name="commit" value="סגור משמרת" class="btn" data-disable-with="סגור משמרת" style="margin-right: -100%;"
+          .col-sm-1 &nbsp;
         .row
           .col-sm-10
             .form-group
@@ -42,12 +52,14 @@
                 input.required.form-control autocomplete="off" maxlength="40" tabindex="2" required="required" aria-required="true" size="40" type="text" value="" name="income[amount]" id="income_amount"
       .form-group.form-group-submit
         .form-group-submit-in
-          = f.button :submit, '₪'
+          input.btn.btn-submit type="submit" name="commit" value="₪" data-disable-with="₪"
           = f.button :submit, '$'
           = f.button :submit, '€'
           input.btn.btn-submit type="submit" name="commit" value="כרטיס אשראי" data-disable-with="כרטיס אשראי"
 .footer
   .container
-    #transactions
-      = render 'shifts/transactions'
+    .row
+      .col-sm-12
+        #transactions
+          = render 'shifts/transactions'
     h2.footer-title © בני ברוך קבלה לעם

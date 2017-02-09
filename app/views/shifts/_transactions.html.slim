@@ -5,10 +5,12 @@ table.table.table-bordered.table-condensed.table-striped
     th שם ושם משפחה
     th שולם בשעה
   - @shift.incomes.successful.order(id: :desc).limit(50).each do |i|
-    tr class="{i.cancelled ? 'danger' : ''}"
+    - klass = i.cancelled ? 'danger' : ''
+    tr class=klass
       td
         = i.amount
+        '
         = Income::CURRENCY[i.currency.to_sym]
       td = i.kind == 'cc' ? 'כרטיס אשראי' : 'מזומן'
       td = i.name
-      td = i.created_at.to_s(:short)
+      td = i.created_at.strftime('%m/%y %H:%M')

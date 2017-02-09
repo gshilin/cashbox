@@ -4,13 +4,18 @@
       .logo
       h1.title קופה #{@desk.system_name} ##{@desk.id}
 
-- if @shift.state == 'active'
-  = link_to 'Continue', cashdesk_shift_path(@desk, @shift)
-  br
-  br
-  = form_for [@desk, @shift], method: :delete do |f|
-    button type='submit' data-disable-with='Please wait...' Close shift
-- elsif @shift.state == 'inactive'
-  = link_to 'Activate', new_cashdesk_shift_path(@desk)
-
-= render 'layouts/amounts'
+.main
+  .container
+    .main-content
+      .row
+        .col-sm-5
+          = render 'layouts/amounts'
+        .col-sm-5
+          - if @shift.state == 'active'
+            = link_to 'המשך עבודה', cashdesk_shift_path(@desk, @shift), class: 'btn'
+            br
+            br
+            = form_for [@desk, @shift], method: :delete do |f|
+              input type="submit" name="commit" value="סגור משמרת" class="btn" data-disable-with="סגור משמרת"
+          - elsif @shift.state == 'inactive'
+            = link_to 'להפעיל', new_cashdesk_shift_path(@desk), class: 'btn'

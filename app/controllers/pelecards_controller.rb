@@ -7,9 +7,9 @@ class PelecardsController < ApplicationController
     if err == 0
       pelecard.income.update_attributes success: true
       # TODO ZZZ pelecard.income.request_receipt
-      msg = 'Accepted'
+      msg = 'התשלום התקבל'
     end
-    redirect_to cashdesk_shift_path(pelecard.cashdesk, pelecard.shift, msg: "#{err}: #{msg}")
+    redirect_to cashdesk_shift_path(pelecard.cashdesk, pelecard.shift, msg: "#{err}: #{msg}", err: err)
   end
 
   def error_url

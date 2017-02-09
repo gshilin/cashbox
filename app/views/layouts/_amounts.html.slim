@@ -1,15 +1,16 @@
+- amounts = @shift.amounts
 table
   tr
     th colspan="2" ס"כ
   tr
     td  כ"א
-    td #{'%.02f' % @shift.cc_amount}
+    td = '%.02f' % amounts[:cc]
   tr
     td ₪
-    td #{@shift.cash_amount('ILS')}
+    td = '%.02f' % amounts[:nis]
   tr
     td $
-    td #{@shift.cash_amount('USD')}
+    td = '%.02f' % amounts[:usd]
   tr
     td €
-    td #{@shift.cash_amount('EUR')}
+    td = '%.02f' % amounts[:eur]

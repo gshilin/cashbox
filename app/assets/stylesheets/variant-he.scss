@@ -436,6 +436,7 @@ div.form-control, span.form-control {
 .btn {
   display: inline-block;
   background-color: #ededed;
+  color: black;
   padding: 8px 12px;
   margin-bottom: 0;
   font-size: 1em;
@@ -510,7 +511,7 @@ div.form-control, span.form-control {
 }
 
 .form-group-submit-in .btn + .btn {
-  margin-right: 5px;
+  margin-right: 20px;
 }
 
 .lnk-toggle {
@@ -886,6 +887,11 @@ th {
   border: 1px solid #ddd;
 }
 
-.table-condensed>tbody>tr>td, .table-condensed>tbody>tr>th, .table-condensed>tfoot>tr>td, .table-condensed>tfoot>tr>th, .table-condensed>thead>tr>td, .table-condensed>thead>tr>th {
+.table-condensed > tbody > tr > td, .table-condensed > tbody > tr > th, .table-condensed > tfoot > tr > td, .table-condensed > tfoot > tr > th, .table-condensed > thead > tr > td, .table-condensed > thead > tr > th {
   padding: 5px;
 }
+
+.table > tbody > tr.danger > td, .table > tbody > tr.danger > th, .table > tbody > tr > td.danger, .table > tbody > tr > th.danger, .table > tfoot > tr.danger > td, .table > tfoot > tr.danger > th, .table > tfoot > tr > td.danger, .table > tfoot > tr > th.danger, .table > thead > tr.danger > td, .table > thead > tr.danger > th, .table > thead > tr > td.danger, .table > thead > tr > th.danger {
+  background-color: #f2dede;
+}
+

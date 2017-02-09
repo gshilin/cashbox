@@ -1,31 +1,44 @@
-h1 Cashdesks
-= link_to 'New Cash Desk', new_admin_cashdesk_path
-br
-br
-table
-  tr
-    th ID
-    th Number
-    th System Name
-    th cc Label
-    th nis Label
-    th usd Label
-    th eur Label
-    th pelecard ShopNo
-    th Actions
-  - @desks.each do |desk|
-    tr
-      td = desk.id
-      td = desk.number
-      td = desk.system_name
-      td = desk.cc_label
-      td = desk.nis_label
-      td = desk.usd_label
-      td = desk.eur_label
-      td = desk.pelecard_ShopNo
-      td
-        = link_to 'Edit', edit_admin_cashdesk_path(desk)
-        | &nbsp;&nbsp;
-        = link_to 'Destroy', admin_cashdesk_path(desk), data: { confirm: 'Are you sure?' }, method: :delete
-        | &nbsp;&nbsp;
-        = link_to 'Duplicate', duplicate_admin_cashdesk_path(desk)
+.credit-title
+  .container
+    .credit-title-1.clearfix
+      .logo
+      h1.title קופות
+
+.main
+  .container
+    .main-content
+      .row
+        .form-group
+          .col-sm-1 = link_to 'צור קופה חדשה', new_admin_cashdesk_path, class: 'btn'
+      .row
+        .form-group
+          .col-sm-2
+            table.table.table-bordered.table-condensed.table-striped
+              tr
+                th ID
+                th מס'
+                th שם
+                th cc icount
+                th nis icount
+                th usd icount
+                th eur icount
+                th pelecard מס' חנות
+                th פעולות
+              - @desks.each do |desk|
+                tr
+                  td = desk.id
+                  td = desk.number
+                  td = desk.system_name
+                  td = desk.cc_label
+                  td = desk.nis_label
+                  td = desk.usd_label
+                  td = desk.eur_label
+                  td = desk.pelecard_ShopNo
+                  td
+                    = link_to 'עיבוד', edit_admin_cashdesk_path(desk)
+                    | &nbsp;&nbsp;
+                    = link_to 'מחיקה', admin_cashdesk_path(desk), data: { confirm: 'Are you sure?' }, method: :delete
+                    | &nbsp;&nbsp;
+                    = link_to 'שיכפול', duplicate_admin_cashdesk_path(desk)
+.footer
+  h2.footer-title © בני ברוך קבלה לעם

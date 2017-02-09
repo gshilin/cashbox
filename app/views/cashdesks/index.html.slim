@@ -1,4 +1,13 @@
-- @desks.each do |desk|
-  = link_to "Desk #{desk.system_name} ##{desk.number}", cashdesk_path(desk)
-  br
-  br
+.credit-title
+  .container
+    .credit-title-1.clearfix
+      .logo
+      h1.title קופות
+
+.main
+  .container
+    .main-content
+      - @desks.each do |desk|
+        .row
+          .form-group
+            .col-sm-2 = link_to "Desk #{desk.system_name} ##{desk.number}", cashdesk_path(desk), class: 'btn'
