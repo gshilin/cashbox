@@ -20,7 +20,7 @@ class IncomesController < ApplicationController
     else
       @shift = Shift.find_by(id: params[:income][:shift_id])
       @income.update_attributes success: true
-      # TODO ZZZ income.request_receipt
+      # TODO ZZZ @income.request_receipt
     end
   end
 

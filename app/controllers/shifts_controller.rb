@@ -1,6 +1,6 @@
 class ShiftsController < ApplicationController
   def show
-    @desk    = Cashdesk.find_by(id: params[:cashdesk_id])
+    @desk    = Cashdesk.find_by(number: params[:cashdesk_id])
     @shift   = @desk.last_shift
     @message = params[:msg]
     @err     = params[:err].to_i
@@ -8,7 +8,7 @@ class ShiftsController < ApplicationController
   end
 
   def new
-    desk  = Cashdesk.find_by(id: params[:cashdesk_id])
+    desk  = Cashdesk.find_by(number: params[:cashdesk_id])
     shift = Shift.create(state: 'active')
     desk.shifts << shift
 
