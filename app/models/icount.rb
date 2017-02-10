@@ -37,7 +37,7 @@ class Icount
 
         show_response:     1
     }
-    params.merge! self.send("set_#{income.kind}", payment_args)
+    params.merge! self.send("set_#{income.kind}", payment_args, income)
 
     rest = RestClient::Resource.new(
         'https://api.icount.co.il/api/create_doc_auto.php',
@@ -100,14 +100,31 @@ class Icount
     @response['REQUEST_OK'] == '1' && @response['EMAIL_LINK'].present? rescue false
   end
 
-  def set_cc(args)
+  def set_cc(args, income)
     amount      = args[:amount].to_f
     payments_no = args[:payments_num] || 1
 
     response = {
-        credit:           1,
-        'cc_cardtype[0]': args[:cc_type],
-        'cc_total[0]':    amount.to_s
+        credit:            1,
+        'cc_cardtype[]':   case income.pelecard.cc_hebrew_name
+                             when 'ויזה'
+                               1
+                             when 'כאל'
+                               1
+                             when 'לאומי כארד'
+                               1
+                             when 'דיינרס'
+                               4
+                             when 'אמריקן אקספרס'
+                               5
+                             when 'ישראכרט'
+                               6
+                             else
+                               7
+                           end,
+        'cctotal[]':       amount.to_s,
+        'cc_cardnumber[]': income.pelecard.cc_number,
+        'cc_holdername[]': income.name
     }
 
     if payments_no > 1
@@ -115,29 +132,29 @@ class Icount
       periodical_payment = (amount - payment_diff) / payments_no
       first_payment      = (periodical_payment + payment_diff).to_f
 
-      response.merge!('cc_paymenttype': 'תשלומים', 'cc_numofpayments[]': payments_no, 'ccfirstpayment[]': first_payment)
+      response.merge!('cc_paymenttype[]': '2', 'cc_numofpayments[]': payments_no, 'ccfirstpayment[]': first_payment)
     else
-      response.merge!('cc_paymenttype': 'רגיל')
+      response.merge!('cc_paymenttype[]': '1')
     end
 
     response
   end
 
-  def set_nis(args)
+  def set_nis(args, income)
     {
         cash:       '1',
         cashamount: args[:cashamount].to_f.to_s
     }
   end
 
-  def set_usd(args)
+  def set_usd(args, income)
     {
         cash:       '1',
         cashamount: args[:cashamount].to_f.to_s
     }
   end
 
-  def set_eur(args)
+  def set_eur(args, income)
     {
         cash:       '1',
         cashamount: args[:cashamount].to_f.to_s
