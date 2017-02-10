@@ -69,7 +69,7 @@ class Shift < ApplicationRecord
     cc = self.connection.execute(sql)
 
     {
-        cc: cc[0]['sum'],
+        cc: cc[0]['sum'] || 0,
         nis: nis,
         usd: usd,
         eur: eur

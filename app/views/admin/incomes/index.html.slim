@@ -16,7 +16,6 @@ br
   - desk.shifts.order(id: :asc).each do |shift|
     - amounts = shift.amounts
     div id="x-#{desk.id}-#{shift.id}" style="border: 1px solid black;"
-      a href=
       strong Desk: #{desk.id} Shift: #{shift.id}
       br
       | CC amount: #{amounts[:cc]}
