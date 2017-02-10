@@ -2,9 +2,9 @@
   .container
     .credit-title-1.clearfix
       .logo
-      h1.title מצב חנויות
+      h1.title דו"ח הכנסות
 - Cashdesk.all.each do |desk|
-  strong Cashdesk #{desk.system_name} ##{desk.number}
+  strong קופה #{desk.system_name} ##{desk.number}
   br
   br
   - desk.shifts.order(id: :asc).each do |shift|
