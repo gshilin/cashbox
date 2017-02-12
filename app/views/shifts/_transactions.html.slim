@@ -5,8 +5,7 @@ table.table.table-bordered.table-condensed.table-striped
     th שם ושם משפחה
     th שולם בשעה
   - @shift_incomes.each do |i|
-    - klass = if i.cancelled then 'danger' elsif i.success == true then '' else 'warning' end
-    tr class=klass
+    tr class=income_class(i)
       td
         = i.amount
         '

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :cashdesks do
     resources :shifts
   end
-  resources :incomes
+  resources :incomes, only: [:create]
   resources :pelecards, only: [] do
     collection do
       post 'good_url'
@@ -19,7 +19,7 @@ Rails.application.routes.draw do
         get 'duplicate'
       end
     end
-    resources :incomes, only: [:index, :show]
+    resources :incomes, only: [:index, :show, :destroy]
     resources :icount_flags, only: [:index, :new]
   end
 end

@@ -9,4 +9,27 @@
       .col-sm-12
         p.bg-warning עיסקה נחשלה
         p.bg-danger עיסקה בוטלה
-        = render 'shifts/transactions'
+        table.table.table-bordered.table-condensed.table-striped
+          tr
+            th id
+            th סכום
+            th סוג תשלום
+            th שם ושם משפחה
+            th שולם בשעה
+            th ביטול
+          - @shift_incomes.each do |income|
+            tr class=income_class(income)
+              td = income.id
+              td
+                = Income::CURRENCY[income.currency.to_sym]
+                = income.amount
+              td = income.kind == 'cc' ? 'כרטיס אשראי' : 'מזומן'
+              td = income.name
+              td = income.created_at.strftime('%m/%y %H:%M')
+              td
+                - if income.success == true
+                  = simple_form_for @desk, url: admin_income_path(income, desk: @desk.id, shift: @shift.id), method: :delete do |f|
+                    - if income.cancelled == false
+                      button.btn.btn-xs.btn-danger type='submit' disable_with='Please wait...' בטל
+                    - else
+                      button.btn.btn-xs.btn-danger type='submit' disable_with='Please wait...' שחזר

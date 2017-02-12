@@ -6,6 +6,15 @@ class Admin::IncomesController < ApplicationController
   def show
     @desk          = Cashdesk.find(params[:id])
     @shift         = Shift.find(params[:shift])
-    @shift_incomes = @shift.incomes.order(id: :desc)
+    @shift_incomes = @shift.incomes.order(id: :asc)
   end
+
+  # cancel
+  def destroy
+    income = Income.find_by(id: params[:id])
+    income.update_attributes(cancelled: !income.cancelled)
+
+    redirect_to admin_income_path(id: params[:desk], shift: params[:shift])
+  end
+
 end
