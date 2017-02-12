@@ -179,7 +179,7 @@ class Pelecard < ApplicationRecord
       '999': 'Necessary values missing to complete installments transaction.',
   }
 
-  def redirect_url(shift, amount, shop_no, transaction_id, shop_no, good_url, error_url, cancel_url)
+  def redirect_url(shift, amount, desk, transaction_id, shop_no, good_url, error_url, cancel_url)
     params = {
         terminal:                   terminal,
         user:                       user,
@@ -221,7 +221,7 @@ class Pelecard < ApplicationRecord
     if err == 0
       update_attributes confirmation_key: msg['ConfirmationKey'],
                         user_key:         transaction_id,
-                        cashdesk:         shop_no,
+                        cashdesk:         desk,
                         shift:            shift
       msg = msg['URL']
     end
