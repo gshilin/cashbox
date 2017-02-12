@@ -1,7 +1,7 @@
 class Income < ApplicationRecord
   belongs_to :shift
-  has_one :icount
-  has_one :pelecard
+  has_one :icount, dependent: :destroy
+  has_one :pelecard, dependent: :destroy
 
   validates_presence_of :name, :amount, message: 'חובה למלא'
   validates_numericality_of :amount, greater_than: 0, message: 'חייב להיות חיובי'
@@ -15,6 +15,8 @@ class Income < ApplicationRecord
   scope :successful, -> { where(success: true, cancelled: false) }
 
   def request_receipt
+    return unless IcountFlag.use_icount
+
     url = Icount.new.generate_receipt(id, icount_label, icount_payment_args)
     if url
       update_attributes(invoice_url: url)

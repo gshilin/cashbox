@@ -1,6 +1,6 @@
 class Shift < ApplicationRecord
   belongs_to :cashdesk
-  has_many :incomes
+  has_many :incomes, dependent: :destroy
 
   def amounts
     # incomes.successful.where(kind: %w(nis usd eur), currency: currency).sum(&:amount)

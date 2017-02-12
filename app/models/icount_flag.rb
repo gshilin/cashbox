@@ -1,0 +1,2 @@
+class IcountFlag < ApplicationRecord
+end

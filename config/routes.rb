@@ -20,5 +20,6 @@ Rails.application.routes.draw do
       end
     end
     resources :incomes, only: [:index, :show]
+    resources :icount_flags, only: [:index, :new]
   end
 end

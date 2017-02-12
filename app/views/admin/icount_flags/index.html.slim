@@ -1,0 +1,18 @@
+.credit-title
+  .container
+    .credit-title-1.clearfix
+      .logo
+      h1.title icount
+
+.main
+  .container
+    .main-content
+      .row
+        .form-group
+          .col-sm-2
+            '  לשלוח ל-ICount:
+            = @flag.use_icount ? 'כן' : 'לא'
+            '
+            = link_to 'Toggle ', new_admin_icount_flag_path, class: 'btn'
+.footer
+  h2.footer-title © בני ברוך קבלה לעם
