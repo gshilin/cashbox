@@ -52,7 +52,7 @@ class Admin::CashdesksController < ApplicationController
   def duplicate
     desk         = Cashdesk.find(params[:id])
     desc        = desk.dup
-    desc.number = Cashdesk.maximum(:number) + 1
+    desc.number = Cashdesk.where(system_name: desk.system_name).maximum(:number) + 1
     desc.save
 
     set_all_desks
