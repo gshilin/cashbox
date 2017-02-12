@@ -4,8 +4,8 @@ table.table.table-bordered.table-condensed.table-striped
     th סוג תשלום
     th שם ושם משפחה
     th שולם בשעה
-  - @shift.incomes.successful.order(id: :desc).limit(50).each do |i|
-    - klass = i.cancelled ? 'danger' : ''
+  - @shift_incomes.each do |i|
+    - klass = if i.cancelled then 'danger' elsif i.success == true then '' else 'warning' end
     tr class=klass
       td
         = i.amount

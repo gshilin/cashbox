@@ -15,7 +15,7 @@ class Income < ApplicationRecord
   scope :successful, -> { where(success: true, cancelled: false) }
 
   def request_receipt
-    return unless IcountFlag.use_icount
+    return unless IcountFlag.first.use_icount
 
     url = Icount.new.generate_receipt(id, icount_label, icount_payment_args)
     if url

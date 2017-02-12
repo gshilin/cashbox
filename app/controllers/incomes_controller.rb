@@ -10,7 +10,7 @@ class IncomesController < ApplicationController
     if @income.kind == 'cc'
       pelecard       = Pelecard.create!(income_id: @income.id)
       transaction_id = "bb-#{@income.id}-#{@income.shift.id}-#{@income.shift.cashdesk.number}-#{Time.now.to_i}"
-      err, msg       = pelecard.redirect_url(@income.shift.id, @income.amount, @income.shift.cashdesk.number, transaction_id,
+      err, msg       = pelecard.redirect_url(@income.shift.id, @income.amount, @income.shift.cashdesk.id, transaction_id,
                                              good_url_pelecards_url, error_url_pelecards_url, cancel_url_pelecards_url)
       if err != 0
         render js: '$("#status").html("' + msg .gsub(/"/, "''")+ '");'

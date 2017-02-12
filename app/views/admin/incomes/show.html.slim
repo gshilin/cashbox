@@ -1,0 +1,12 @@
+.credit-title
+  .container
+    .credit-title-1.clearfix
+      .logo
+      h1.title דו"ח הכנסות לקופה #{@desk.system_name} משמרת #{@shift.id}
+.main
+  .container
+    .main-content
+      .col-sm-12
+        p.bg-warning עיסקה נחשלה
+        p.bg-danger עיסקה בוטלה
+        = render 'shifts/transactions'

@@ -1,10 +1,11 @@
 class ShiftsController < ApplicationController
   def show
-    @desk    = Cashdesk.find_by(id: params[:cashdesk_id])
-    @shift   = @desk.last_shift
-    @message = params[:msg]
-    @err     = params[:err].to_i
-    @income  = Income.new(shift: @shift, name: params[:name], amount: params[:amount])
+    @desk          = Cashdesk.find_by(id: params[:cashdesk_id])
+    @shift         = @desk.last_shift
+    @shift_incomes = @shift.incomes.successful.order(id: :desc).limit(50)
+    @message       = params[:msg]
+    @err           = params[:err].to_i
+    @income        = Income.new(shift: @shift, name: params[:name], amount: params[:amount])
   end
 
   def new
