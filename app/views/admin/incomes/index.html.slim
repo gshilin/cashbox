@@ -20,7 +20,5 @@
             td.text-right
               - desk.shifts.order(id: :asc).each do |shift|
                 a.btn.btn-sm class="#{shift.state == 'active' ? 'btn-success' : 'btn-warning'}" style="margin-right: 10px;" href=admin_income_path(id: desk.id, shift: shift.id) target="_blank"
-                  | משמרת ##{'%02d' % shift.id}
-                  br
-                    small
-                      | #{shift.created_at.strftime('%m/%y %H:%M')} - #{shift.updated_at.strftime('%m/%y %H:%M')}
+                  small
+                    | #{shift.created_at.in_time_zone('Asia/Jerusalem').strftime('%m/%y %H:%M')} - #{shift.updated_at.in_time_zone('Asia/Jerusalem').strftime('%m/%y %H:%M')}

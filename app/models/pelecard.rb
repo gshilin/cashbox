@@ -202,7 +202,7 @@ class Pelecard < ApplicationRecord
         FirstPayment:               'auto',
         ShopNo:                     shop_no,
         UserKey:                    transaction_id,
-        SetFocus:                   'CCH',
+        SetFocus:                   'CC',
         TopText:                    'BB כרטיסי אשראי',
         BottomText:                 '© בני ברוך קבלה לעם',
         LogoURL:                    'http://www.kab.co.il/images/hebmain/logo1.png',

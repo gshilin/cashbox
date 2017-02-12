@@ -13,6 +13,7 @@ class Income < ApplicationRecord
   }
 
   scope :successful, -> { where(success: true, cancelled: false) }
+  scope :successful_inc_cancel, -> { where('success = true OR cancelled = true') }
 
   def request_receipt
     return unless IcountFlag.first.use_icount

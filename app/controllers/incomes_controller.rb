@@ -20,7 +20,7 @@ class IncomesController < ApplicationController
       end
     else
       @shift         = Shift.find_by(id: params[:income][:shift_id])
-      @shift_incomes = @shift.incomes.successful.order(id: :desc).limit(50)
+      @shift_incomes = @shift.incomes.successful_inc_cancel.order(id: :desc).limit(50)
       @income.update_attributes success: true
       @income.request_receipt
     end

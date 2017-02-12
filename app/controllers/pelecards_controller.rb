@@ -17,13 +17,14 @@ class PelecardsController < ApplicationController
     pelecard.update_attributes transaction_id: params[:PelecardTransactionId],
                                status_code:    params[:PelecardStatusCode].to_i
     redirect_to cashdesk_shift_path(pelecard.cashdesk, pelecard.shift,
-                                    msg: params[:PelecardStatusCode] + ': ' + Pelecard::MESSAGES[params[:PelecardStatusCode].to_sym])
+                                    err: params[:PelecardStatusCode],
+                                    msg:  Pelecard::MESSAGES[params[:PelecardStatusCode].to_sym])
   end
 
   def cancel_url
     pelecard = Pelecard.find_by(user_key: params[:UserKey])
     pelecard.update_attributes transaction_id: params[:PelecardTransactionId],
                                status_code:    params[:PelecardStatusCode].to_i
-    redirect_to cashdesk_shift_path(pelecard.cashdesk, pelecard.shift, msg: 'עיסקה בוטלה')
+    redirect_to cashdesk_shift_path(pelecard.cashdesk, pelecard.shift, err: params[:PelecardStatusCode], msg: 'עיסקה בוטלה')
   end
 end

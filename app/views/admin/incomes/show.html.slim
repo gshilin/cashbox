@@ -2,17 +2,25 @@
   .container
     .credit-title-1.clearfix
       .logo
-      h1.title דו"ח הכנסות לקופה #{@desk.system_name} משמרת #{@shift.id}
+      h1.title דו"ח הכנסות לקופה #{@desk.system_name} ##{@desk.number}
 .main
   .container
     .main-content
       .row
         .col-sm-12
-          p
-            ' #{@amounts[:cc]} כ"א
-            ' ₪#{@amounts[:nis]}
-            ' #{@amounts[:usd]}$
-            ' #{@amounts[:eur]}€
+          table
+            tr
+              td כ"א
+              td #{@amounts[:cc]}
+            tr
+              td ₪
+              td #{@amounts[:nis]}
+            tr
+              td $
+              td #{@amounts[:usd]}
+            tr
+              td €
+              td #{@amounts[:eur]}
       .row
         .col-sm-12
           p.bg-warning עיסקה נכשלה
@@ -33,7 +41,7 @@
                   = income.amount
                 td = income.kind == 'cc' ? 'כרטיס אשראי' : 'מזומן'
                 td = income.name
-                td = income.created_at.strftime('%m/%y %H:%M')
+                td = income.created_at.in_time_zone('Asia/Jerusalem').strftime('%m/%y %H:%M')
                 td
                   - if income.success == true
                     = simple_form_for @desk, url: admin_income_path(income, desk: @desk.id, shift: @shift.id), method: :delete do |f|

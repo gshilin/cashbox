@@ -2,12 +2,15 @@
   .container
     .credit-title-1.clearfix
       .logo
-      h1.title קופה #{@desk.system_name} ##{@desk.number} משמרת #{@shift.id}
+      h1.title קופה #{@desk.system_name} ##{@desk.number}
   - if @err != 0 && @message
     #validation-errors
       .errorRow
         .container
-          = @message
+          => @message
+          | (
+          = @err
+          | )
   - elsif @err == 0 && @message
     #status.status-positive
       .container

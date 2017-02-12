@@ -12,4 +12,4 @@ table.table.table-bordered.table-condensed.table-striped
         = Income::CURRENCY[i.currency.to_sym]
       td = i.kind == 'cc' ? 'כרטיס אשראי' : 'מזומן'
       td = i.name
-      td = i.created_at.strftime('%m/%y %H:%M')
+      td = i.created_at.in_time_zone('Asia/Jerusalem').strftime('%m/%y %H:%M')
