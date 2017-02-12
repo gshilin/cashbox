@@ -10,15 +10,16 @@ class IncomesController < ApplicationController
     if @income.kind == 'cc'
       pelecard       = Pelecard.create!(income_id: @income.id)
       transaction_id = "bb-#{@income.id}-#{@income.shift.id}-#{@income.shift.cashdesk.number}-#{Time.now.to_i}"
-      err, msg       = pelecard.redirect_url(@income.shift.id, @income.amount, @income.shift.cashdesk.id, transaction_id,
+      shop_no        = @income.shift.cashdesk.pelecard_ShopNo
+      err, msg       = pelecard.redirect_url(@income.shift.id, @income.amount, @income.shift.cashdesk.id, transaction_id, shop_no,
                                              good_url_pelecards_url, error_url_pelecards_url, cancel_url_pelecards_url)
       if err != 0
-        render js: '$("#status").html("' + msg .gsub(/"/, "''")+ '");'
+        render js: '$("#status").html("' + msg.gsub(/"/, "''")+ '");'
       else
         render js: "location = '#{msg}'"
       end
     else
-      @shift = Shift.find_by(id: params[:income][:shift_id])
+      @shift         = Shift.find_by(id: params[:income][:shift_id])
       @shift_incomes = @shift.incomes.successful.order(id: :desc).limit(50)
       @income.update_attributes success: true
       @income.request_receipt

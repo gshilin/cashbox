@@ -179,7 +179,7 @@ class Pelecard < ApplicationRecord
       '999': 'Necessary values missing to complete installments transaction.',
   }
 
-  def redirect_url(shift, amount, shop_no, transaction_id, good_url, error_url, cancel_url)
+  def redirect_url(shift, amount, shop_no, transaction_id, shop_no, good_url, error_url, cancel_url)
     params = {
         terminal:                   terminal,
         user:                       user,
@@ -200,6 +200,7 @@ class Pelecard < ApplicationRecord
         MinPayments:                1,
         MaxPayments:                12,
         FirstPayment:               'auto',
+        ShopNo:                     shop_no,
         UserKey:                    transaction_id,
         SetFocus:                   'CCH',
         TopText:                    'BB כרטיסי אשראי',

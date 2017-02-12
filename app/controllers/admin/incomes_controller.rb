@@ -7,6 +7,7 @@ class Admin::IncomesController < ApplicationController
     @desk          = Cashdesk.find(params[:id])
     @shift         = Shift.find(params[:shift])
     @shift_incomes = @shift.incomes.order(id: :asc)
+    @amounts       = @shift.amounts
   end
 
   # cancel

@@ -19,11 +19,8 @@
             td #{desk.system_name} ##{'%02d' % desk.number}
             td.text-right
               - desk.shifts.order(id: :asc).each do |shift|
-                a.btn class="#{shift.state == 'active' ? 'btn-success' : 'btn-warning'}" style="margin-right: 10px;" href=admin_income_path(id: desk.id, shift: shift.id) target="_blank"
+                a.btn.btn-sm class="#{shift.state == 'active' ? 'btn-success' : 'btn-warning'}" style="margin-right: 10px;" href=admin_income_path(id: desk.id, shift: shift.id) target="_blank"
                   | משמרת ##{'%02d' % shift.id}
                   br
-                  - amounts = shift.amounts
-                  ' #{amounts[:cc]} כ"א
-                  ' #{amounts[:nis]}₪
-                  ' #{amounts[:usd]}$
-                  ' #{amounts[:eur]}€
+                    small
+                      | #{shift.created_at.strftime('%m/%y %H:%M')} - #{shift.updated_at.strftime('%m/%y %H:%M')}
