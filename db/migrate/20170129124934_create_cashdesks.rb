@@ -8,6 +8,7 @@ class CreateCashdesks < ActiveRecord::Migration[5.0]
       t.string :eur_label, null: false
       t.string :usd_label, null: false
       t.string :pelecard_ShopNo, null: false
+      t.string :icount_email, null: false
       t.timestamps
     end
   end

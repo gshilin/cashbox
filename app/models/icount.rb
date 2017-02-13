@@ -16,6 +16,8 @@ class Icount
       return false
     end
 
+    email = income.shift.cashdesk.icount_email
+
     icount_logger.info "executing request for #{income.name}"
 
     params = {
@@ -30,7 +32,7 @@ class Icount
         currency:          CURRENCY[income.currency.to_sym],
         es:                'קבלה לעם - אישור תשלום',
         hwc:               'חנות ספרים',
-        sendOrig:          'gshilin@gmail.com',
+        sendOrig:          email,
         receipt_type_name: 'no_group',
         lang:              'he',
         eft:               'בלינק המצורף תוכל להוריד קבלה על התשלום שביצעת: ',

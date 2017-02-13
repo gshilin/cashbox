@@ -70,6 +70,6 @@ class Admin::CashdesksController < ApplicationController
   end
 
   def cash_desk_params
-    params.fetch(:cash_desk, {}).permit(:number, :cc_label, :nis_label, :usd_label, :eur_label, :pelecard_ShopNo, :system_name)
+    params.fetch(:cash_desk, {}).permit(:number, :cc_label, :nis_label, :usd_label, :eur_label, :pelecard_ShopNo, :system_name, :icount_email)
   end
 end

@@ -26,6 +26,16 @@
   .row
     .col-sm-6
       .form-group
+        label.control-label for="cash_desk_icount_email"
+          i.ic-p.star-ic
+          span
+            | &nbsp; icount email
+          em.ic-p.clear-ic style="display:none"
+        .control-value
+          input.required.form-control autocomplete="off" maxlength="40" required="required" aria-required="true" size="40" type="text" value=@desk.icount_email name="cash_desk[icount_email]" id="cash_desk_icount_email"
+  .row
+    .col-sm-6
+      .form-group
         label.control-label for="cash_desk_cc_label"
           i.ic-p.star-ic
           span
