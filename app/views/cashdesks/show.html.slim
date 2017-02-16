@@ -9,6 +9,7 @@
     .main-content
       .row
         .col-sm-5
+          div #{@shift.created_at.in_time_zone('Asia/Jerusalem').strftime('%m/%y %H:%M')} - #{@shift.updated_at.in_time_zone('Asia/Jerusalem').strftime('%m/%y %H:%M')}
           = render 'layouts/amounts'
         .col-sm-5
           - if @shift.state == 'active'
