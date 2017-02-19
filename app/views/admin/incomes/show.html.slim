@@ -8,7 +8,7 @@
     .main-content
       .row
         .col-sm-12
-          .main-title #{@shift.created_at.in_time_zone('Asia/Jerusalem').strftime('%m/%y %H:%M')} - #{@shift.updated_at.in_time_zone('Asia/Jerusalem').strftime('%m/%y %H:%M')}
+          .main-title style="dir=ltr" #{@shift.created_at.in_time_zone('Asia/Jerusalem').strftime('%d/%m/%y %H:%M')} - #{@shift.updated_at.in_time_zone('Asia/Jerusalem').strftime('%m/%y %H:%M')}
           table
             tr
               td כ"א
@@ -42,7 +42,7 @@
                   = income.amount
                 td = income.kind == 'cc' ? 'כרטיס אשראי' : 'מזומן'
                 td = income.name
-                td = income.created_at.in_time_zone('Asia/Jerusalem').strftime('%m/%y %H:%M')
+                td style="dir: ltr;" = income.created_at.in_time_zone('Asia/Jerusalem').strftime('%d/%m/%y %H:%M')
                 td
                   - if income.success == true
                     = simple_form_for @desk, url: admin_income_path(income, desk: @desk.id, shift: @shift.id), method: :delete do |f|
