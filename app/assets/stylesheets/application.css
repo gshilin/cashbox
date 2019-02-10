@@ -13,3 +13,7 @@
  *= require variant-he
  *= require_self
  */
+input.btn[value="$"],
+input.btn[value="€"] {
+    display: none;
+}
