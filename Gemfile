@@ -42,3 +42,6 @@ group :development do
 end
 
 gem 'rest-client'
+gem 'nokogiri', '~> 1.8.2'
+gem 'loofah', '~> 2.2.1'
+

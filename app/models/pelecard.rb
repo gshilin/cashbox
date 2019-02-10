@@ -174,7 +174,7 @@ class Pelecard < ApplicationRecord
       '510': 'Data not exist. ',
       '555': 'Cancel url status code.',
       '597': 'General error. Please contact support team. ',
-      '598': 'Necessary values are blocked/wrong. ',
+      '598': 'Necessary values are missing/wrong. ',
       '599': 'General error. Repeat action. ',
       '999': 'Necessary values missing to complete installments transaction.',
   }
